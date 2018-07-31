@@ -20,7 +20,7 @@ public class Colonist
         return name+" the "+race+" "+profession+" has "+health+" HP. Their curse is: "+curse;
     }
 
-    public static Colonist BabyMaker(Colonist parentA, Colonist parentB)
+    public static Colonist BabyMaker(string name, Colonist parentA, Colonist parentB)
     {
         string race = "Unknown";
         if (parentA.race == parentB.race) {
@@ -30,6 +30,6 @@ public class Colonist
         }
         
         // TODO do you want all babies to have the same name? Should the babymaker signature accept a name?
-        return new Colonist("Baby", race, "Baby", 100);
+        return new Colonist(name, race, "Baby", 100);
     }
 }

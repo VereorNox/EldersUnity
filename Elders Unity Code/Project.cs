@@ -9,10 +9,12 @@ namespace Main {
             string[] colonists = System.IO.File.ReadAllLines(@"input.txt");
             foreach (string colonist in colonists) {
                 string[] fields = colonist.Split(',');
-                colony.AddColonist(int.Parse(fields[0]),new Colonist(fields[1],fields[2],fields[3],int.Parse(fields[4])));
+                colony.AddColonist(fields[0],new Colonist(fields[0],fields[1],fields[2],int.Parse(fields[3])));
             }
 
-            colony.AddColonist(3,Colonist.BabyMaker(colony.GetColonist(1),colony.GetColonist(2)));
+            // Manually adding in a 3 feels bad.
+            string babyName = "Baby";
+            colony.AddColonist(babyName,Colonist.BabyMaker(babyName,colony.GetColonist("Unga"),colony.GetColonist("Bae")));
             Console.WriteLine(colony.Population());
             colony.PrintColony();
         }

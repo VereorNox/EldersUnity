@@ -2,20 +2,20 @@ using System;
 using System.Collections.Generic;
 
 class Colony {
-    // TODO you might want this to be a hashtable in the future. Random access of that will be much more
-    private Dictionary<int,Colonist> colonists = new Dictionary<int,Colonist>();
+    private Dictionary<string,Colonist> colonists = new Dictionary<string,Colonist>();
 
-    // TODO you can make one of these for name too, you'll just have to iterate over it. Or implement it with name as the key.
-    // I tend to avoid name as key so you don't have to worry about duplicates, mutation, etc., but that's your call.
-    // Whatever your key is you want it to be unique and ideally not change (what happens if one part of your game stores a character, another part
-    // swaps the names of two colonists, and then the first part tries to refer to the first colonist again. Only you know if this type of thing happens.)
-    public Colonist GetColonist(int id) {
-        // TODO nilcheck
-        return colonists[id];
+    // TODO think about how you will handle duplicate names or namechanges. Using name as a key is powerful but comes with costs.
+    public Colonist GetColonist(string name) {
+        Colonist colonist;
+        if (!colonists.TryGetValue(name, out colonist)) {
+            // TODO csharp normal exception handling, I haven't looked into this yet. You didn't find the colonist.
+            Console.WriteLine("Couldn't find colonist {name}");
+        }
+        return colonist;
     }
 
-    public void AddColonist(int key, Colonist colonist) {
-        colonists[key] = colonist;
+    public void AddColonist(string name, Colonist colonist) {
+        colonists[name] = colonist;
         return;
     }
 
