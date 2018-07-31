@@ -8,14 +8,14 @@ class Colony {
     public Colonist GetColonist(string name) {
         Colonist colonist;
         if (!colonists.TryGetValue(name, out colonist)) {
-            // TODO csharp normal exception handling, I haven't looked into this yet. You didn't find the colonist.
+            // TODO csharp normal exception handling, I haven't looked into this yet.
             Console.WriteLine("Couldn't find colonist {name}");
         }
         return colonist;
     }
 
-    public void AddColonist(string name, Colonist colonist) {
-        colonists[name] = colonist;
+    public void AddColonist(Colonist colonist) {
+        colonists[colonist.name] = colonist;
         return;
     }
 

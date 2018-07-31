@@ -2,8 +2,9 @@ using System;
 
 public class Colonist
 {
-    private string name, race, profession;
-    private int health, curse;
+    // TODO can make these private if you want to make getters/setters for em.
+    public string name, race, profession;
+    public int health, curse;
     
     public Colonist(string n, string r, string p, int h)
     {
