@@ -1,0 +1,2 @@
+1,"Unga","Human","NEET",100
+2,"Bae","Orc","Warrior",150

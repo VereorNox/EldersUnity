@@ -1,49 +1,35 @@
 using System;
 
-namespace ColonistConstructor {
-	public class Colonist
-	{
-		private string name;
-		private string race;
-		private string profession;
-		private int health;
-		private int curse;
-		
-		public Colonist(string colonistName, string colonistRace, string colonistProfession, int colonistHealth)
-		{
-			name = colonistName;
-			race = colonistRace;
-			profession = colonistProfession;
-			health = colonistHealth;
-			curse = 0;
-		}
+public class Colonist
+{
+    private string name, race, profession;
+    private int health, curse;
+    
+    public Colonist(string n, string r, string p, int h)
+    {
+        name = n;
+        race = r;
+        profession = p;
+        health = h;
+        // TODO?
+        curse = 0;
+    }
 
-			public override string ToString() 
-			{
-				return name+" the "+race+" "+profession+" has "+health+" HP. Their curse is: "+curse;
-			}
+    public override string ToString() 
+    {
+        return name+" the "+race+" "+profession+" has "+health+" HP. Their curse is: "+curse;
+    }
 
-		public static Colonist babyMaker(Colonist parentA, Colonist parentB)
-			{
-				Colonist baby = new Colonist("Baby", "Unknown", "Baby", 100);
-				if (parentA.race == parentB.race) {
-					baby.race = parentA.race;
-				} else if (parentA.race != parentB.race) {
-					if (parentA.race == "Human" && parentB.race == "Orc") {
-						baby.race = "Half-Orc";
-					}
-					else if (parentA.race == "Orc" && parentB.race == "Human") {
-						baby.race = "Half-Orc";
-					}
-				}
-				else {
-					baby.race = "Unidentified";
-				}
-				return baby;
-			}
-				
-	}
-
+    public static Colonist BabyMaker(Colonist parentA, Colonist parentB)
+    {
+        string race = "Unknown";
+        if (parentA.race == parentB.race) {
+            race = parentA.race;
+        } else if ((parentA.race == "Human" && parentB.race == "Orc") || (parentA.race == "Orc" && parentB.race == "Human")) {
+            race = "Half-Orc";
+        }
+        
+        // TODO do you want all babies to have the same name? Should the babymaker signature accept a name?
+        return new Colonist("Baby", race, "Baby", 100);
+    }
 }
-
-

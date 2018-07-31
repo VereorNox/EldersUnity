@@ -1,33 +1,33 @@
 using System;
 using System.Collections.Generic;
-using ColonistConstructor;
 
-namespace Colony {
-    
+class Colony {
+    // TODO you might want this to be a hashtable in the future. Random access of that will be much more
+    private Dictionary<int,Colonist> colonists = new Dictionary<int,Colonist>();
 
+    // TODO you can make one of these for name too, you'll just have to iterate over it. Or implement it with name as the key.
+    // I tend to avoid name as key so you don't have to worry about duplicates, mutation, etc., but that's your call.
+    // Whatever your key is you want it to be unique and ideally not change (what happens if one part of your game stores a character, another part
+    // swaps the names of two colonists, and then the first part tries to refer to the first colonist again. Only you know if this type of thing happens.)
+    public Colonist GetColonist(int id) {
+        // TODO nilcheck
+        return colonists[id];
+    }
 
-    class ColonyState
-    {
-        List<Colonist> colonists = new List<Colonist>(); //TODO: Make a method that takes a newly generated colonist and adds them to the list
+    public void AddColonist(int key, Colonist colonist) {
+        colonists[key] = colonist;
+        return;
+    }
 
-        public int population() {
-            return colonists.Count;
+    public int Population() {
+        return colonists.Count;
+    }
 
+    public void PrintColony() {
+        foreach (var colonist in colonists) {
+            Console.WriteLine(colonist.Value);
         }
-        private int happiness;
-
-    private static void Main()
-    {
-        Colonist unga = new Colonist("Unga","Human","NEET",100);
-        Colonist bae = new Colonist("Bae", "Orc", "Warrior",150);
-        ColonyState testColony = new ColonyState();
-        testColony.colonists.Add(unga);
-        testColony.colonists.Add(bae);
-        testColony.colonists.Add(Colonist.babyMaker(unga, bae));
-        Console.WriteLine(testColony.population());
-        testColony.colonists.ForEach(Console.WriteLine);
     }
 
-    }
-
+    //private int happiness;
 }
